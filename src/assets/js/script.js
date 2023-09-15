@@ -1,5 +1,4 @@
 const API_KEY = 'eb95e5e9de7eec32ef17c67998bd7439'
-const iconURL = 'https://openweathermap.org/img/wn/10d@2x.png'
 const defaultCity = 'dallas'
 
 const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&units=imperial&appid=${API_KEY}`
@@ -41,6 +40,49 @@ function getFiveDayForecast() {
 				const forecastTime = new Date(forecast.dt * 1000)
 				return forecastTime.getHours() === 16
 			})
+
+			const forecastEl = document.getElementById('forecast-weather')
+			dailyForecast.forEach((forecast) => {
+				const card = document.createElement('div')
+				const classList = [
+					'card',
+					'flex',
+					'flex-col',
+					'block',
+					'min-w-[50px]',
+					'max-w-sm',
+					'p-6',
+					'border',
+					'rounded-lg',
+					'shadow',
+					'bg-gray-800',
+					'border-gray-700',
+					'text-white',
+					'align-center',
+					'justify-center'
+				]
+				card.classList.add(...classList)
+
+				let date = new Date(forecast.dt * 1000)
+				let month = date.getMonth()
+				let day = date.getDate()
+				let icon = forecast.weather[0].icon
+				let condition = forecast.weather[0].main
+				let temp = forecast.main.temp.toFixed(0) + '\u00B0'
+				let wind = forecast.wind.speed.toFixed(0) + ' mph'
+				let humidity = forecast.main.humidity + '%'
+
+				card.innerHTML = `
+				<h2 class='text-center'>${month}/${day}</h2>
+				<img src='https://openweathermap.org/img/wn/${icon}@2x.png'/>
+				<p class='text-center'>${condition}</p>
+				<p class='text-center'>${temp}</p>
+				<p class='text-center'>${wind}</p>
+				<p class='text-center'>${humidity}</p>`
+
+				forecastEl.appendChild(card)
+			})
+
 			console.log(dailyForecast)
 		})
 }
