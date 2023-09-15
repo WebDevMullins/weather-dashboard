@@ -27,7 +27,7 @@ function getCurrentWeather() {
 			currentTemp.textContent = data.main.temp.toFixed(0) + '\u00B0'
 			currentWind.textContent = data.wind.speed.toFixed(0) + ' MPH'
 			currentHumidity.textContent = data.main.humidity + '%'
-			console.log(data)
+			// console.log(data)
 		})
 }
 
@@ -37,7 +37,11 @@ function getFiveDayForecast() {
 			return res.json()
 		})
 		.then((data) => {
-			console.log(data)
+			const dailyForecast = data.list.filter((forecast) => {
+				const forecastTime = new Date(forecast.dt * 1000)
+				return forecastTime.getHours() === 16
+			})
+			console.log(dailyForecast)
 		})
 }
 
