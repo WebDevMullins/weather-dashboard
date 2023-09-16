@@ -9,9 +9,18 @@
 		<main>
 			<form class="mb-6 mt-6">
 				<div class="mb-6">
-					<input type="text" id="city-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter City to Search" required>
+					<input
+						type="text"
+						id="city-input"
+						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						placeholder="Enter City to Search"
+						required />
 				</div>
-				<button type="submit" id="submit-btn" onclick="searchCity(e)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+				<button
+					id="submit"
+					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+					Search
+				</button>
 			</form>
 			<section id="currentWeather">
 				<h1 id="city-name" class="text-3xl font-bold"></h1>
@@ -21,11 +30,8 @@
 				<p id="current-wind"></p>
 				<p id="current-humidity"></p>
 			</section>
-			<section id="forecast-weather" class="flex items-center justify-center">
-			</div>
-		</section>
-	</main>
+			<section id="forecast-weather" class="flex items-center justify-center"></section>
+		</main>
 		<script src="./assets/js/script.js"></script>
 	</body>
-	</html>
-	
+</html>
