@@ -1,7 +1,8 @@
 const API_KEY = 'eb95e5e9de7eec32ef17c67998bd7439'
 const defaultCity = 'dallas'
 const formInput = document.querySelector('#city-input')
-const forecastEl = document.getElementById('forecast-weather')
+const currentEl = document.querySelector('#current-weather')
+const forecastEl = document.querySelector('#forecast-weather')
 const submitBtn = document.querySelector('#submit')
 submitBtn.addEventListener('click', searchCity)
 
@@ -34,6 +35,7 @@ function searchCity(e) {
 				let currentFeel = document.querySelector('#current-feel')
 				let currentHumidity = document.querySelector('#current-humidity')
 				let currentWind = document.querySelector('#current-wind')
+				currentEl.classList.replace('hidden', 'flex')
 				cityName.textContent = 'Weather in ' + data.name
 				currentIcon.setAttribute(
 					'src',
