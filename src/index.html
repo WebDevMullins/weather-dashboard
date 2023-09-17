@@ -12,9 +12,8 @@
 			alt=""
 			class="absolute bg-cover h-screen w-full" />
 		<main
-			class="relative flex flex-col m-auto justify-between items-center max-w-2xl h-screen text-white px-3 z-20">
-			<header
-				class="relative flex flex-col justify-between items-center max-w-lg w-full pt-4">
+			class="relative flex flex-col m-auto justify-around items-center max-w-2xl h-screen text-white p-4 z-20">
+			<header class="relative flex flex-col justify-between items-center max-w-lg w-full">
 				<form
 					class="relative flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 rounded-2xl">
 					<div>
@@ -49,18 +48,19 @@
 					</button>
 				</div>
 			</header>
-			<section id="current-weather"
+			<section
+				id="current-weather"
 				class="relative flex-col justify-between w-full h-auto z-10 bg-black/60 m-auto p-4 rounded-2xl hidden">
-				<h1 id="city-name" class="text-3xl text-center pt-5"></h1>
+				<h1 id="city-name" class="text-3xl text-center"></h1>
 				<div class="flex flex-col justify-between items-center">
-					<div class="flex justify-around items-center w-full max-w-lg py-10">
+					<div class="flex justify-around items-center w-full max-w-lg">
 						<div class="flex flex-col items-center">
 							<img id="current-icon" alt="" />
 							<p id="current-condition" class="text-xl"></p>
 						</div>
 						<p id="current-temp" class="text-7xl"></p>
 					</div>
-					<div class="flex justify-around items-center w-full max-w-lg text-center py-10">
+					<div class="flex justify-around items-center w-full max-w-lg text-center pt-4">
 						<div>
 							<p id="current-feel" class="text-2xl font-bold"></p>
 							<p class="text-xl">Feels Like</p>
@@ -75,8 +75,8 @@
 						</div>
 					</div>
 				</div>
-				<section id="forecast-weather" class="relative flex items-center justify-between"></section>
 			</section>
+			<section id="forecast-weather" class="relative flex items-center justify-between w-full"></section>
 		</main>
 		<script src="./assets/js/script.js"></script>
 	</body>

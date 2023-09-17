@@ -12,13 +12,13 @@ function searchCity(e) {
 	let city = formInput.value
 	console.log(city)
 
-	// const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
+	const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
 
-	// const fiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${API_KEY}`
+	const fiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${API_KEY}`
 
-	const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&units=imperial&appid=${API_KEY}`
+	// const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&units=imperial&appid=${API_KEY}`
 
-	const fiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${defaultCity}&units=imperial&appid=${API_KEY}`
+	// const fiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${defaultCity}&units=imperial&appid=${API_KEY}`
 
 	forecastEl.innerHTML = ''
 
@@ -44,7 +44,7 @@ function searchCity(e) {
 				currentCondition.textContent = data.weather[0].main
 				currentTemp.textContent = data.main.temp.toFixed(0) + '\u00B0'
 				currentFeel.textContent = data.main.feels_like.toFixed(0) + '\u00B0'
-				currentWind.textContent = data.wind.speed.toFixed(0) + ' MPH'
+				currentWind.textContent = data.wind.speed.toFixed(0) + ' mph'
 				currentHumidity.textContent = data.main.humidity + '%'
 				// console.log(data)
 			})
@@ -68,15 +68,10 @@ function searchCity(e) {
 						'card',
 						'flex',
 						'flex-col',
-						'block',
-						'min-w-[50px]',
-						'max-w-sm',
-						'p-6',
-						'border',
+						'py-6',
 						'rounded-lg',
 						'shadow',
-						'bg-gray-800',
-						'border-gray-700',
+						'bg-black/60',
 						'text-white',
 						'align-center',
 						'justify-center'
@@ -95,10 +90,15 @@ function searchCity(e) {
 					card.innerHTML = `
 				<h2 class='text-center'>${month}/${day}</h2>
 				<img src='https://openweathermap.org/img/wn/${icon}@2x.png'/>
-				<p class='text-center'>${condition}</p>
-				<p class='text-center'>${temp}</p>
-				<p class='text-center'>${wind}</p>
-				<p class='text-center'>${humidity}</p>`
+				<p class='text-center text-xl font-bold py-2'>${temp}</p>
+				<div class='py-1'>
+				<p class='text-center text-lg font-bold'>${wind}</p>
+				<p class='text-center'>Wind</p>	
+				</div>
+				<div class='py-1'>
+				<p class='text-center text-lg font-bold'>${humidity}</p>
+				<p class='text-center'>Hum</p>
+				</div>`
 
 					forecastEl.appendChild(card)
 				})
@@ -108,7 +108,7 @@ function searchCity(e) {
 	}
 
 	getCurrentWeather()
-	// getFiveDayForecast()
+	getFiveDayForecast()
 
 	formInput.value = ''
 }
