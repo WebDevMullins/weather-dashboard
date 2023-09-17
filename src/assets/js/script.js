@@ -31,8 +31,9 @@ function searchCity(e) {
 				let currentIcon = document.querySelector('#current-icon')
 				let currentCondition = document.querySelector('#current-condition')
 				let currentTemp = document.querySelector('#current-temp')
-				let currentWind = document.querySelector('#current-wind')
+				let currentFeel = document.querySelector('#current-feel')
 				let currentHumidity = document.querySelector('#current-humidity')
+				let currentWind = document.querySelector('#current-wind')
 				cityName.textContent = 'Weather in ' + data.name
 				currentIcon.setAttribute(
 					'src',
@@ -40,6 +41,7 @@ function searchCity(e) {
 				)
 				currentCondition.textContent = data.weather[0].main
 				currentTemp.textContent = data.main.temp.toFixed(0) + '\u00B0'
+				currentFeel.textContent = data.main.feels_like.toFixed(0) + '\u00B0'
 				currentWind.textContent = data.wind.speed.toFixed(0) + ' MPH'
 				currentHumidity.textContent = data.main.humidity + '%'
 				// console.log(data)
