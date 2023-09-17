@@ -6,31 +6,72 @@
 		<link href="./assets/css/output.css" rel="stylesheet" />
 	</head>
 	<body>
-		<main>
-			<form class="mb-6 mt-6">
-				<div class="mb-6">
-					<input
-						type="text"
-						id="city-input"
-						class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-						placeholder="Enter City to Search"
-						required />
+		<main
+			class="relative flex flex-col m-auto justify-between items-center w-full max-w-[1000px] h-screen bg-slate-600 text-white px-3">
+			<header
+				class="relative flex flex-col justify-between items-center max-w-[500px] w-full pt-4 z-10">
+				<form
+					class="relative flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 rounded-2xl">
+					<div>
+						<input
+							type="text"
+							id="city-input"
+							class="bg-transparent focus:outline-none text-xl border-none"
+							placeholder="Enter City to Search"
+							required />
+					</div>
+					<button id="submit">
+						<svg
+							class="w-6 h-6"
+							aria-hidden="true"
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 20 20">
+							<path
+								stroke="currentColor"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+						</svg>
+					</button>
+				</form>
+				<div id="recent-searches">
+					<button
+						type="button"
+						class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-normal rounded-full text-sm px-3 py-1 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+						Dallas
+					</button>
 				</div>
-				<button
-					id="submit"
-					class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-					Search
-				</button>
-			</form>
-			<section id="currentWeather">
-				<h1 id="city-name" class="text-3xl font-bold"></h1>
-				<img id="current-icon" alt="" />
-				<p id="current-condition"></p>
-				<p id="current-temp"></p>
-				<p id="current-wind"></p>
-				<p id="current-humidity"></p>
-			</section>
-			<section id="forecast-weather" class="flex items-center justify-center"></section>
+			</header>
+			<div
+				class="relative flex flex-col justify-between w-full h-[60vh] z-10 bg-black/40 m-auto p-5 rounded-2xl">
+				<h1 id="city-name" class="text-3xl text-center"></h1>
+				<section id="currentWeather" class="flex flex-col justify-between items-center">
+					<div class="flex justify-around items-center w-full max-w-[500px]">
+						<div class="flex flex-col items-center">
+							<img id="current-icon" alt="" />
+							<p id="current-condition" class="text-xl"></p>
+						</div>
+						<p id="current-temp" class="text-7xl"></p>
+					</div>
+					<div class="flex justify-around items-center w-full max-w-[500px] pt-10 text-center">
+						<div>
+							<p id="current-feel" class="text-2xl font-bold"></p>
+							<p class="text-xl">Feels Like</p>
+						</div>
+						<div>
+							<p id="current-humidity" class="text-2xl font-bold"></p>
+							<p class="text-xl">Humidity</p>
+						</div>
+						<div>
+							<p id="current-wind" class="text-2xl font-bold"></p>
+							<p class="text-xl">Wind Speed</p>
+						</div>
+					</div>
+				</section>
+				<section id="forecast-weather" class="relative flex items-center justify-between"></section>
+			</div>
 		</main>
 		<script src="./assets/js/script.js"></script>
 	</body>

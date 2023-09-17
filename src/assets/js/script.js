@@ -11,9 +11,13 @@ function searchCity(e) {
 	let city = formInput.value
 	console.log(city)
 
-	const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
+	// const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
 
-	const fiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${API_KEY}`
+	// const fiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${API_KEY}`
+
+	const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&units=imperial&appid=${API_KEY}`
+
+	const fiveDayForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${defaultCity}&units=imperial&appid=${API_KEY}`
 
 	forecastEl.innerHTML = ''
 
@@ -100,7 +104,7 @@ function searchCity(e) {
 	}
 
 	getCurrentWeather()
-	getFiveDayForecast()
+	// getFiveDayForecast()
 
 	formInput.value = ''
 }
