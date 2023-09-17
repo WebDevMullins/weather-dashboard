@@ -6,14 +6,15 @@
 		<link href="./assets/css/output.css" rel="stylesheet" />
 	</head>
 	<body>
+		<div class="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-40 z-10"></div>
 		<img
 			src="https://images.unsplash.com/photo-1553984840-ec965a23cddd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80"
 			alt=""
-			class="absolute bg-cover h-[100vh] w-full" />
+			class="absolute bg-cover h-screen w-full" />
 		<main
-			class="relative flex flex-col m-auto justify-between items-center max-w-full h-screen text-white px-3">
+			class="relative flex flex-col m-auto justify-between items-center max-w-4xl h-screen text-white px-3 z-20">
 			<header
-				class="relative flex flex-col justify-between items-center max-w-[500px] w-full pt-4 z-10">
+				class="relative flex flex-col justify-between items-center max-w-lg w-full pt-4">
 				<form
 					class="relative flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 rounded-2xl">
 					<div>
@@ -50,16 +51,16 @@
 			</header>
 			<div
 				class="relative flex flex-col justify-between w-full h-[60vh] z-10 bg-black/40 m-auto p-5 rounded-2xl">
-				<h1 id="city-name" class="text-3xl text-center"></h1>
+				<h1 id="city-name" class="text-3xl text-center pt-5"></h1>
 				<section id="currentWeather" class="flex flex-col justify-between items-center">
-					<div class="flex justify-around items-center w-full max-w-[500px]">
+					<div class="flex justify-around items-center w-full max-w-lg py-10">
 						<div class="flex flex-col items-center">
 							<img id="current-icon" alt="" />
 							<p id="current-condition" class="text-xl"></p>
 						</div>
 						<p id="current-temp" class="text-7xl"></p>
 					</div>
-					<div class="flex justify-around items-center w-full max-w-[500px] pt-10 text-center">
+					<div class="flex justify-around items-center w-full max-w-lg text-center py-10">
 						<div>
 							<p id="current-feel" class="text-2xl font-bold"></p>
 							<p class="text-xl">Feels Like</p>
