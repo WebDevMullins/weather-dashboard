@@ -35,7 +35,7 @@ function getCurrentWeather(city) {
 
 			currentEl.classList.replace('hidden', 'flex')
 			currentEl.innerHTML = `
-			<h1 id="city-name" class="text-3xl text-center">${cityName}</h1>
+			<h1 id="city-name" class="text-2xl md:text-3xl text-center">${cityName}</h1>
 				<div class="flex flex-col justify-between items-center">
 					<div class="flex justify-around items-center w-full max-w-lg">
 						<div class="flex flex-col items-center">
@@ -166,11 +166,15 @@ function displaySearches(history) {
 			'py-1',
 			'text-center',
 			'mr-[0px]',
-			'md:mr-1',
+			'md:mr-1'
 		]
 		item.classList.add(...classListBtn)
 		item.textContent = city
 		searchEl.appendChild(item)
+		item.addEventListener('click', (e) => {
+			formInput.value = city
+			searchWeather(e)
+		})
 	})
 }
 
