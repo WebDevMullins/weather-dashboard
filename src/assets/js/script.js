@@ -10,18 +10,20 @@ function searchWeather(e) {
 	e.preventDefault()
 
 	const city = formInput.value
-	formInput.value = ''
-	forecastEl.innerHTML = ''
+	formInput.value = '' //  Clear search input box
+	forecastEl.innerHTML = '' //  Reset forecast element each search
 
 	getCurrentWeather(city)
 	getFiveDayForecast(city)
 }
+
+// Fucntion to call current weather
 function getCurrentWeather(city) {
 	const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
 	fetch(currentWeather)
 		.then((res) => {
 			if (!res.ok) {
-				throw new Error('City not found')
+				throw new Error('City not found') // Check for API error
 			}
 			return res.json()
 		})
@@ -33,7 +35,7 @@ function getCurrentWeather(city) {
 			const currentWind = data.wind.speed.toFixed(0) + ' mph'
 			const currentHumidity = data.main.humidity + '%'
 
-			currentEl.classList.replace('hidden', 'flex')
+			currentEl.classList.replace('hidden', 'flex') // Set class to show current weather section
 			currentEl.innerHTML = `
 			<h1 id="city-name" class="text-2xl md:text-3xl text-center">${cityName}</h1>
 				<div class="flex flex-col justify-between items-center">
@@ -61,11 +63,11 @@ function getCurrentWeather(city) {
 				</div>
 			`
 
-			saveSearch(data.name)
+			saveSearch(data.name) // Call to save city name in local storage
 		})
 		.catch((error) => {
 			currentEl.classList.replace('hidden', 'flex')
-			currentEl.innerHTML = `<p>Error: ${error.message}</p>`
+			currentEl.innerHTML = `<p class='text-center'>Error: ${error.message}</p>` //  Display error message
 		})
 }
 
@@ -79,18 +81,19 @@ function getFiveDayForecast(city) {
 			return res.json()
 		})
 		.then((data) => {
+			//  Get weather for 4pm each day
 			const dailyForecast = data.list.filter((forecast) => {
 				const forecastTime = new Date(forecast.dt * 1000)
 				return forecastTime.getHours() === 16
 			})
-
+			// Loop through and create card for each day
 			dailyForecast.forEach((forecast) => {
 				const card = document.createElement('div')
 				const classList = [
 					'card',
 					'flex',
 					'flex-col',
-					'py-6',
+					'py-4',
 					'rounded-lg',
 					'shadow',
 					'bg-black/60',
@@ -98,16 +101,15 @@ function getFiveDayForecast(city) {
 					'align-center',
 					'justify-center'
 				]
-				card.classList.add(...classList)
+				card.classList.add(...classList) // Add classes to each card
 
-				let date = new Date(forecast.dt * 1000)
-				let month = date.getMonth()
-				let day = date.getDate()
-				let icon = forecast.weather[0].icon
-				let condition = forecast.weather[0].main
-				let temp = forecast.main.temp.toFixed(0) + '\u00B0'
-				let wind = forecast.wind.speed.toFixed(0) + ' mph'
-				let humidity = forecast.main.humidity + '%'
+				const date = new Date(forecast.dt * 1000)
+				const month = date.getMonth()
+				const day = date.getDate()
+				const icon = forecast.weather[0].icon
+				const temp = forecast.main.temp.toFixed(0) + '\u00B0'
+				const wind = forecast.wind.speed.toFixed(0) + ' mph'
+				const humidity = forecast.main.humidity + '%'
 
 				card.innerHTML = `
 				<h2 class='text-center'>${month}/${day}</h2>
@@ -122,34 +124,37 @@ function getFiveDayForecast(city) {
 				<p class='text-center'>Hum</p>
 				</div>`
 
-				forecastEl.appendChild(card)
+				forecastEl.appendChild(card) //  Display cards
 			})
 		})
 		.catch((error) => {
 			currentEl.classList.replace('hidden', 'flex')
-
 			currentEl.innerHTML = `<p>Error: ${error.message}</p>`
 		})
 }
-
+//  Function to save city name to local storage
 function saveSearch(city) {
 	console.log(city)
 	const history = JSON.parse(localStorage.getItem('history')) || []
+	//  Check to see if city is already in storage
 	if (!history.includes(city)) {
-		history.unshift(city)
+		history.unshift(city) //  Add city to beginning of array
 	}
+	//  Check to see if more than 5 cities are stored
 	if (history.length > 5) {
-		history.pop()
+		history.pop() // Remove last city
 	}
 	localStorage.setItem('history', JSON.stringify(history))
 	displaySearches(history)
 }
 
+//  Function to display search history buttons
 function displaySearches(history) {
 	searchEl.innerHTML = ''
 	if (history === null) {
 		return
 	}
+	//  Loop through local storage and create a button for each city
 	history.forEach((city) => {
 		const item = document.createElement('button')
 		const classListBtn = [
@@ -171,6 +176,7 @@ function displaySearches(history) {
 		item.classList.add(...classListBtn)
 		item.textContent = city
 		searchEl.appendChild(item)
+		//  Event Listener to search by local storage city
 		item.addEventListener('click', (e) => {
 			formInput.value = city
 			searchWeather(e)
@@ -178,5 +184,6 @@ function displaySearches(history) {
 	})
 }
 
+//  Display search history on initial page load
 const initSearch = JSON.parse(localStorage.getItem('history'))
 displaySearches(initSearch)
