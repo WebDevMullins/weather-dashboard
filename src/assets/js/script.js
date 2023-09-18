@@ -135,38 +135,38 @@ function getFiveDayForecast(city) {
 function saveSearch(city) {
 	console.log(city)
 	const history = JSON.parse(localStorage.getItem('history')) || []
-	if (history.length > 4) {
-		history.pop()
-	}
 	if (!history.includes(city)) {
 		history.unshift(city)
-		localStorage.setItem('history', JSON.stringify(history))
 	}
+	if (history.length > 5) {
+		history.pop()
+	}
+	localStorage.setItem('history', JSON.stringify(history))
 	displaySearches(history)
 }
 
 function displaySearches(history) {
 	searchEl.innerHTML = ''
-
+	if (history === null) {
+		return
+	}
 	history.forEach((city) => {
 		const item = document.createElement('button')
 		const classListBtn = [
-			'bg-blue-700',
-			'hover:bg-blue-800',
+			'hover:bg-gray-800',
 			'focus:outline-none',
-			'focus:ring-4',
-			'focus:ring-blue-300',
+			'focus:ring-1',
+			'focus:ring-gray-300',
 			'font-normal',
-			'rounded-full',
+			'hover:font-bold',
+			'rounded-2xl',
 			'text-sm',
+			'md:text-lg',
 			'px-3',
 			'py-1',
 			'text-center',
-			'mr-2',
-			'mb-2',
-			'dark:bg-blue-600',
-			'dark:hover:bg-blue-700',
-			'dark:focus:ring-blue-800'
+			'mr-[0px]',
+			'md:mr-1',
 		]
 		item.classList.add(...classListBtn)
 		item.textContent = city
