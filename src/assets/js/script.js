@@ -6,6 +6,8 @@ const forecastEl = document.querySelector('#forecast-weather')
 const submitBtn = document.querySelector('#submit')
 submitBtn.addEventListener('click', searchCity)
 
+const recentCities = {name: ['']}
+
 function searchCity(e) {
 	e.preventDefault()
 
@@ -37,16 +39,16 @@ function searchCity(e) {
 				let currentWind = document.querySelector('#current-wind')
 				currentEl.classList.replace('hidden', 'flex')
 				cityName.textContent = 'Weather in ' + data.name
-				currentIcon.setAttribute(
-					'src',
-					`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-				)
+				currentIcon.setAttribute('src', `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
 				currentCondition.textContent = data.weather[0].main
 				currentTemp.textContent = data.main.temp.toFixed(0) + '\u00B0'
 				currentFeel.textContent = data.main.feels_like.toFixed(0) + '\u00B0'
 				currentWind.textContent = data.wind.speed.toFixed(0) + ' mph'
 				currentHumidity.textContent = data.main.humidity + '%'
 				// console.log(data)
+
+				localStorage.setItem(recentCities, data.name)
+
 			})
 	}
 
