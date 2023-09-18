@@ -1,5 +1,6 @@
 const API_KEY = 'eb95e5e9de7eec32ef17c67998bd7439'
 const formInput = document.querySelector('#city-input')
+const searchEl = document.querySelector('#recent-searches')
 const currentEl = document.querySelector('#current-weather')
 const forecastEl = document.querySelector('#forecast-weather')
 const submitBtn = document.querySelector('#submit')
@@ -141,6 +142,37 @@ function saveSearch(city) {
 		history.unshift(city)
 		localStorage.setItem('history', JSON.stringify(history))
 	}
+	displaySearches(history)
 }
 
-function displaySearches(history) {}
+function displaySearches(history) {
+	searchEl.innerHTML = ''
+
+	history.forEach((city) => {
+		const item = document.createElement('button')
+		const classListBtn = [
+			'bg-blue-700',
+			'hover:bg-blue-800',
+			'focus:outline-none',
+			'focus:ring-4',
+			'focus:ring-blue-300',
+			'font-normal',
+			'rounded-full',
+			'text-sm',
+			'px-3',
+			'py-1',
+			'text-center',
+			'mr-2',
+			'mb-2',
+			'dark:bg-blue-600',
+			'dark:hover:bg-blue-700',
+			'dark:focus:ring-blue-800'
+		]
+		item.classList.add(...classListBtn)
+		item.textContent = city
+		searchEl.appendChild(item)
+	})
+}
+
+const initSearch = JSON.parse(localStorage.getItem('history'))
+displaySearches(initSearch)
