@@ -134,6 +134,9 @@ function getFiveDayForecast(city) {
 function saveSearch(city) {
 	console.log(city)
 	const history = JSON.parse(localStorage.getItem('history')) || []
+	if (history.length > 4) {
+		history.pop()
+	}
 	if (!history.includes(city)) {
 		history.unshift(city)
 		localStorage.setItem('history', JSON.stringify(history))
