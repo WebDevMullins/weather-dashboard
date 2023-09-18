@@ -14,7 +14,6 @@ function searchWeather(e) {
 
 	getCurrentWeather(city)
 	getFiveDayForecast(city)
-	saveCity()
 }
 function getCurrentWeather(city) {
 	const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
@@ -61,7 +60,7 @@ function getCurrentWeather(city) {
 				</div>
 			`
 
-			saveCity(data.name)
+			saveSearch(data.name)
 		})
 		.catch((error) => {
 			currentEl.classList.replace('hidden', 'flex')
@@ -132,15 +131,13 @@ function getFiveDayForecast(city) {
 		})
 }
 
-function saveCity(city) {
+function saveSearch(city) {
 	console.log(city)
 	const history = JSON.parse(localStorage.getItem('history')) || []
-	if (city === undefined) {
-		return
-	} else {
-		if (!history.includes(city)) {
-			history.push(city)
-			localStorage.setItem('history', JSON.stringify(history))
-		}
+	if (!history.includes(city)) {
+		history.unshift(city)
+		localStorage.setItem('history', JSON.stringify(history))
 	}
 }
+
+function displaySearches(history) {}
