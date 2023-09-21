@@ -29,6 +29,7 @@ function getCurrentWeather(city) {
 		})
 		.then((data) => {
 			const cityName = 'Weather in ' + data.name
+			const today = dayjs().format('MMMM D, YYYY')
 			const currentCondition = data.weather[0].main
 			const currentTemp = data.main.temp.toFixed(0) + '\u00B0'
 			const currentFeel = data.main.feels_like.toFixed(0) + '\u00B0'
@@ -37,7 +38,8 @@ function getCurrentWeather(city) {
 
 			currentEl.classList.replace('hidden', 'flex') // Set class to show current weather section
 			currentEl.innerHTML = `
-			<h1 id="city-name" class="text-2xl md:text-3xl text-center">${cityName}</h1>
+			<h1 class="text-2xl md:text-3xl text-center">${cityName}</h1>
+			<p class="text-xl md:text-2xl text-center pt-3">${today}</p>
 				<div class="flex flex-col justify-between items-center">
 					<div class="flex justify-around items-center w-full max-w-lg">
 						<div class="flex flex-col items-center">
@@ -99,20 +101,21 @@ function getFiveDayForecast(city) {
 					'bg-black/60',
 					'text-white',
 					'align-center',
-					'justify-center'
+					'justify-center',
+					'w-full'
 				]
 				card.classList.add(...classList) // Add classes to each card
 
-				const date = new Date(forecast.dt * 1000)
-				const month = date.getMonth()
-				const day = date.getDate()
+				const day = dayjs(forecast.dt * 1000).format('ddd')
+				const date = dayjs(forecast.dt * 1000).format('DD')
 				const icon = forecast.weather[0].icon
 				const temp = forecast.main.temp.toFixed(0) + '\u00B0'
 				const wind = forecast.wind.speed.toFixed(0) + ' mph'
 				const humidity = forecast.main.humidity + '%'
 
 				card.innerHTML = `
-				<h2 class='text-center'>${month}/${day}</h2>
+				<p class='text-lg text-center'>${day}</p>
+				<p class='text-lg text-center pt-3'>${date}</p>
 				<img src='https://openweathermap.org/img/wn/${icon}@2x.png'/>
 				<p class='text-center text-xl font-bold py-2'>${temp}</p>
 				<div class='py-1'>
@@ -134,7 +137,6 @@ function getFiveDayForecast(city) {
 }
 //  Function to save city name to local storage
 function saveSearch(city) {
-	console.log(city)
 	const history = JSON.parse(localStorage.getItem('history')) || []
 	//  Check to see if city is already in storage
 	if (!history.includes(city)) {
