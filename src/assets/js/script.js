@@ -83,10 +83,10 @@ function getFiveDayForecast(city) {
 			return res.json()
 		})
 		.then((data) => {
-			//  Get weather for 4pm each day
+			//  Get weather for 3pm each day
 			const dailyForecast = data.list.filter((forecast) => {
 				const forecastTime = new Date(forecast.dt * 1000)
-				return forecastTime.getHours() === 16
+				return forecastTime.getHours() === 15
 			})
 			// Loop through and create card for each day
 			dailyForecast.forEach((forecast) => {
